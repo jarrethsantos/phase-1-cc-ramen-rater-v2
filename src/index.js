@@ -1,5 +1,4 @@
 // index.js
-
 document.addEventListener('DOMContentLoaded', function() {
   main();
 });
@@ -8,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function main() {
   displayRamens();
   addSubmitListener();
+  addEditListener();
+  addDeleteListener();
 }
 
 
@@ -45,6 +46,11 @@ function displayRamenDetails(ramen) {
     <p>Rating: ${ramen.rating}</p>
     <p>Comment: ${ramen.comment}</p>
   `;
+
+  const editForm = document.querySelector('#edit-ramen');
+  const deleteButton = document.querySelector('#delete-ramen');
+  editForm.dataset.id = ramen.id;
+  deleteButton.dataset.id = ramne.id;
 }
 
 // add submit listener to the new ramen form
@@ -59,6 +65,7 @@ function addSubmitListener() {
       rating: formData.get('rating'),
       comment: formData.get('comment')
     };
+
     //post request
     fetch('http://localhost:3000/ramens', {
       method: 'POST',
@@ -130,11 +137,22 @@ function addDeleteListener() {
     .catch(error => console.error('Error deleting ramen:', error));
   });
 }
+
+
 // Export functions for testing
 export {
   displayRamens,
   addSubmitListener,
   handleClick,
   main,
+  addDeleteListener,
+  addEditListener,
 };
 
+
+
+
+//comment = null
+//rating = not showing
+//cannot delete
+//cannot update-
