@@ -50,7 +50,7 @@ function displayRamenDetails(ramen) {
   const editForm = document.querySelector('#edit-ramen');
   const deleteButton = document.querySelector('#delete-ramen');
   editForm.dataset.id = ramen.id;
-  deleteButton.dataset.id = ramne.id;
+  deleteButton.dataset.id = ramen.id;
 }
 
 // add submit listener to the new ramen form
@@ -63,7 +63,7 @@ function addSubmitListener() {
       name: formData.get('name'),
       image: formData.get('image'),
       rating: formData.get('rating'),
-      comment: formData.get('comment')
+      comment: formData.get('new-comment')
     };
 
     //post request
@@ -100,8 +100,8 @@ function addEditListener() {
     event.preventDefault();
     const id = form.dataset.id;
     const updatedRamen = {
-      rating: document.querySelector('#new-rating').value,
-      comment: document.querySelector('#new-comment').value
+      rating: document.querySelector('#edit-rating').value,
+      comment: document.querySelector('#edit-comment').value
     };
     fetch(`http://localhost:3000/ramens/${id}`, {
       method: 'PATCH',
@@ -152,7 +152,6 @@ export {
 
 
 
-//comment = null
-//rating = not showing
-//cannot delete
-//cannot update-
+//add new Ramen -> commment always comes up null but can edit;
+
+
